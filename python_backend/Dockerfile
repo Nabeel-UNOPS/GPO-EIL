@@ -11,9 +11,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy all source code
 COPY . .
 
-# Set PORT for Cloud Run and expose it
-ENV PORT 8080
+# Configure PORT for Cloud Run and expose it
+ENV PORT=8080
 EXPOSE 8080
 
-# Start the app with Gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:$PORT", "app:app"]
+# Start the app with Gunicorn, using shell form so $PORT is expanded
+CMD gunicorn --bind 0.0.0.0:$PORT app:app
