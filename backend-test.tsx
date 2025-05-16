@@ -4,9 +4,11 @@ import { useEffect, useState } from 'react';
 export default function BackendTestPage() {
   const [response, setResponse] = useState('');
 
+  const backendUrl = 'https://python-backend-459331316403.us-central1.run.app';
+
   useEffect(() => {
-    fetch('https://python-backend-459331316403.us-central1.run.app/')
-      .then((res) => res.text())
+    fetch(`${backendUrl}/`)  // adjust endpoint if your backend serves API here
+      .then((res) => res.text()) // or .json() if backend sends JSON
       .then((data) => setResponse(data))
       .catch((err) => setResponse(`Error: ${err.message}`));
   }, []);
