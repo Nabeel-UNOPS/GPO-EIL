@@ -14,3 +14,11 @@ COPY . .
 # Run the application
 CMD ["python", "app.py"]
 
+# Copy app source
+COPY . .
+
+# Expose the Cloud Run default port
+EXPOSE 8080
+
+# Use Gunicorn to serve the Flask app
+CMD ["gunicorn", "-b", "0.0.0.0:8080", "app:app"]
